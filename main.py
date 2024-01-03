@@ -1,3 +1,7 @@
+'''
+Needs resize of the bgpic, csv with coordinates in x y format and names of all the countries
+'''
+
 import turtle
 
 IMAGE = 'europe.gif'
