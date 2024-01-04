@@ -9,4 +9,3 @@ class Window_app(Turtle):
         self.screen.title('Europe Countries Quiz')
         self.screen.addshape(IMAGE)
         self.shape(IMAGE)
-        self.screen.exitonclick()
