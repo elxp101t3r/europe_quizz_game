@@ -11,7 +11,8 @@ turtle.shape(IMAGE)
 t = turtle.Turtle()
 count_correct = 0
 
-while True:
+game_on = True
+while game_on:
     answer = screen.textinput(title=f'{count_correct}/36 Guess the Europen country', prompt="What's another country name?")
 
     if answer is not None:
@@ -26,4 +27,10 @@ while True:
                 t.hideturtle()
                 t.goto(x['cordinate_x'], x['cordinate_y'])
                 t.write(title_case)
+    if count_correct == 36:
+        screen.clear()
+        game_on = False
+t.goto(0,0)
+t.write("Congratulations!", align='center',font=("Arial", 20, "normal"))
+screen.exitonclick()
                              
