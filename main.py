@@ -1,5 +1,6 @@
 import turtle
 import pandas as pd
+import csv
 IMAGE = 'europe.gif'
 
 screen = turtle.Screen()
@@ -18,12 +19,11 @@ while True:
 
         df = pd.read_csv('eu_countries.csv')
 
-        for x, row in df.iterrows():
-            if title_case == row['country']:
+        for i, x in df.iterrows():
+            if title_case == x['country']:
                 count_correct += 1
                 t.penup()
                 t.hideturtle()
-                t.goto(row['cordinate_x'], row['cordinate_y'])
+                t.goto(x['cordinate_x'], x['cordinate_y'])
                 t.write(title_case)
-                
-                
+                             
