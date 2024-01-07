@@ -7,7 +7,7 @@ screen.setup(width=600, height=480)
 screen.title('Europe Quiz Game')
 screen.addshape(IMAGE)
 turtle.shape(IMAGE)
-
+t = turtle.Turtle()
 count_correct = 0
 
 while True:
@@ -18,7 +18,12 @@ while True:
 
         df = pd.read_csv('eu_countries.csv')
 
-        for x in df['country']:
-            if title_case == x:
+        for x, row in df.iterrows():
+            if title_case == row['country']:
                 count_correct += 1
+                t.penup()
+                t.hideturtle()
+                t.goto(row['cordinate_x'], row['cordinate_y'])
+                t.write(title_case)
+                
                 
