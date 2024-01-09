@@ -1,6 +1,6 @@
 import turtle
 import pandas as pd
-import csv
+
 IMAGE = 'europe.gif'
 
 screen = turtle.Screen()
@@ -8,29 +8,22 @@ screen.setup(width=600, height=480)
 screen.title('Europe Quiz Game')
 screen.addshape(IMAGE)
 turtle.shape(IMAGE)
-t = turtle.Turtle()
-count_correct = 0
 
-game_on = True
-while game_on:
-    answer = screen.textinput(title=f'{count_correct}/36 Guess the Europen country', prompt="What's another country name?")
+data = pd.read_csv('eu_countries.csv')
+all_countries = data.country.to_list()
 
-    if answer is not None:
-        title_case = answer.title()
+guessed_countries = []
 
-        df = pd.read_csv('eu_countries.csv')
+while len(guessed_countries) < 36:
+    answer = screen.textinput(title=f'{len(guessed_countries)}/36 Countries | Guess the country', prompt='Whats the next country?').title()
 
-        for i, x in df.iterrows():
-            if title_case == x['country']:
-                count_correct += 1
-                t.penup()
-                t.hideturtle()
-                t.goto(x['cordinate_x'], x['cordinate_y'])
-                t.write(title_case, align='center')
-    if count_correct == 36:
-        screen.clear()
-        game_on = False
-t.goto(0,0)
-t.write("Congratulations!", align='center',font=("Arial", 20, "normal"))
+    if answer in all_countries:
+        guessed_countries.append(answer)
+        t = turtle.Turtle()
+        t.hideturtle()
+        t.penup()
+        country_data = data[data.country == answer]
+        t.goto(int(country_data.cordinate_x), int(country_data.cordinate_y))
+        t.write(country_data.country.item(), align='center')
+
 screen.exitonclick()
-                             
