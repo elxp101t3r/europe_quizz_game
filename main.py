@@ -26,7 +26,7 @@ while game_on:
                 t.penup()
                 t.hideturtle()
                 t.goto(x['cordinate_x'], x['cordinate_y'])
-                t.write(title_case)
+                t.write(title_case, align='center')
     if count_correct == 36:
         screen.clear()
         game_on = False
